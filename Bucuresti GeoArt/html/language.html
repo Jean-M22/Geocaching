@@ -1,0 +1,19 @@
+<h1>Please select a language</h1>
+<h1>Te rog selectează limba</h1>
+
+<select name="language">
+    <option value="en">English</option>
+    <option value="ro">Română</option>
+</select>
+
+<button onclick="submit()">OK</button>
+
+<script>
+    function submit() {
+        document.cookie = "language=" + document.getElementsByName("language")[0].value;
+        window.location.reload();
+    }
+</script>
+
+<style>
+</style>

@@ -1,6 +1,7 @@
 .env
 .idea
 bin
+dist
 obj
 data
 node_modules
