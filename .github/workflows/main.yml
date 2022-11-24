@@ -11,7 +11,7 @@ jobs:
         with:
           host: 165.227.255.220
           username: ${{ secrets.SSH_USER }}
-          key: ${{ secrets.SSH_KEY }}
+          key: ${{ secrets.SSH_TOKEN }}
           script: |
             cd ~/geocaching
             git pull
