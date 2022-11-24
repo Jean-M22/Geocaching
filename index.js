@@ -6,7 +6,7 @@ const path = require("path");
 
 const app = express();
 app.use(bodyParser.urlencoded({ extended: false }));
-app.listen(80);
+app.listen(3000);
 
 module.exports = app;
 
