@@ -9,7 +9,7 @@ import { join } from "path";
 export const app = express();
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
-app.listen(3001);
+app.listen(3000);
 
 const directories = readdirSync(__dirname);
 directories.forEach(directory => {
