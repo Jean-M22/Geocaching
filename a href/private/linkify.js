@@ -28,7 +28,7 @@ for (const i in input.split("")) {
 
         case "&":
             inEncoding = true;
-            output += `<a href="http://165.227.255.220/ahref/link?id=${i}">`;
+            output += `<a href="https://jeanm22.me/ahref/link?id=${i}">`;
             output += c;
             break;
         
@@ -44,7 +44,7 @@ for (const i in input.split("")) {
                 continue;
             }
 
-            output += `<a href="http://165.227.255.220/ahref/link?id=${i}">`;
+            output += `<a href="https://jeanm22.me/ahref/link?id=${i}">`;
             output += c;
             output += "</a>";
 
@@ -53,3 +53,4 @@ for (const i in input.split("")) {
 }
 
 fs.writeFileSync("output.html", output);
+fs.appendFileSync("output.html", "<p style='color:gray'><i>Sursa: tutorialehtml.com</i></p>");
