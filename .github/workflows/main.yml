@@ -14,5 +14,5 @@ jobs:
           key: ${{ secrets.SSH_TOKEN }}
           script: |
             cd ~/geocaching
-            npm i
             git pull
+            npm i
