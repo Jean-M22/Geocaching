@@ -1,6 +1,5 @@
 import { app } from ".";
 
 app.get("/_redirect/approximations", (_, res) => {
-    return res.sendStatus(501);
-    res.redirect(301, "");
+    return res.redirect(301, "/_external/Dino_Master2000/Approximations/geochecker");
 });

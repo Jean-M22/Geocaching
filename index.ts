@@ -18,5 +18,5 @@ for (const file of files) {
 
     const filePath = join(__dirname, file);
     console.log("Loading file " + filePath);
-    import(filePath);
+    require(filePath);
 }
