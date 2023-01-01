@@ -20,3 +20,7 @@ for (const file of files) {
     console.log("Loading file " + filePath);
     require(filePath);
 }
+
+app.get("/test", (req, res) => {
+    res.sendStatus(200);
+});
