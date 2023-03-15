@@ -2,7 +2,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>GCA3ZC0 - [LPSG] Ark: Survival Evolved</title>
+  <title>GeoArt București</title>
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <style>
     .center {
@@ -43,22 +43,28 @@
         width: 90%;
       }
     }
+    .small {
+      font-size: inherit;
+    }
   </style>
   
   <script defer>
     document.addEventListener("DOMContentLoaded", () => {
       if (window.location.search.includes("incorrect")) {
-      document.getElementById("incorrect").style.display = "block";
+        document.getElementById("incorrect").style.display = "block";
+        window.history.replaceState(null, "", window.location.origin + window.location.pathname);
       }
     });
   </script>
 </head>
 <body>
   <div class="center">
-    <div><a href="https://coord.info/GCA3ZC0">GCA3ZC0</a> - [LPSG] Ark: Survival Evolved</div>
-    <form action="/_external/Dino_Master2000/LPSGArkSurvivalEvolved/result" method="POST">
-      <input type="text" name="password">
-      <button type="submit">CHECK PASSWORD</button>
+    <div class="small">București - <%= letter %>#<%= number %></div>
+    <div class="small"><%= topic %></div>
+    <div><%= question %></div>
+    <form action="/BucharestGeoArt/cache/<%= letter %>/<%= number %>/check" method="POST">
+      <input type="text" name="answer" placeholder="English or Romanian OK">
+      <button type="submit">CHECK ANSWER</button>
     </form>
     <div id="incorrect" style="color: red; display: none">INCORRECT!</div>
   </div>

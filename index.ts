@@ -9,6 +9,7 @@ import { join } from "path";
 export const app = express();
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
+app.set("view engine", "ejs");
 app.listen(3000);
 
 const files = readdirRecursiveSync(__dirname);
