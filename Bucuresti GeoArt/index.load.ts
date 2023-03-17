@@ -14,8 +14,9 @@ app.get("/BucurestiGeoArt/cache/:letter/:number", (req, res) => {
     const number = req.params.number as keyof typeof questions[typeof letter]["caches"];
     
     return res.render(join(__dirname, "/public/cache.ejs"), {
-        letter: letter.replace("1", "¹").replace("2", "²"),
+        letter: letter,
         number: number,
+        displayLetter: letter.replace("1", "¹").replace("2", "²"),
         topic: questions[letter].topic,
         question: questions[letter].caches[number].question,
     });
@@ -38,8 +39,8 @@ app.post("/BucurestiGeoArt/cache/:letter/:number/check", (req, res) => {
         return res.redirect(302, `/BucurestiGeoArt/cache/${req.params.letter}/${req.params.number}?incorrect`);
 
     return res.render(join(__dirname, "/public/correct.ejs"), {
-        letter: letter.replace("1", "¹").replace("2", "²").replace(/^S$/g, "Ș"),
         number: number,
+        displayLetter: letter.replace("1", "¹").replace("2", "²"),
         topic: questions[letter].topic,
         coords: questions[letter].caches[number].coords,
         bonus_id: questions[letter].bonusId,
