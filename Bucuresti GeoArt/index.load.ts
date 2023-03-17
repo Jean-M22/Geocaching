@@ -32,10 +32,11 @@ app.post("/BucurestiGeoArt/cache/:letter/:number/check", (req, res) => {
     if (!questions[letter].caches.hasOwnProperty(req.params.number)) return res.status(400).send("Invalid cache number");
     const number = req.params.number as keyof typeof questions[typeof letter]["caches"];
 
+    console.log(`Checking answer for cache ${letter}#${number}: ${req.body.answer}`);
+
     if (!checkAnswer(req.body.answer, questions[letter].caches[number].answer as Answer)) 
         return res.redirect(302, `/BucurestiGeoArt/cache/${req.params.letter}/${req.params.number}?incorrect`);
 
-    
     return res.render(join(__dirname, "/public/correct.ejs"), {
         letter: letter.replace("1", "¹").replace("2", "²").replace(/^S$/g, "Ș"),
         number: number,
