@@ -17,9 +17,9 @@
       font-family: 'Roboto', sans-serif;
     }
     div {
-      font-size: 1.5em;
+      font-size: 1.4em;
       padding: 20px;
-      font-weight: bold;
+      font-weight: 550;
       text-transform: uppercase;
       padding-bottom: 10px;
     }
@@ -54,7 +54,11 @@
     <div class="small"><%= topic %></div>
     <div style="color: lime">CORRECT!</div>
     <div><%= coords %></div>
-    <code>Number for Bonus #<%= bonus_id %>: <%= bonus_amount %></code>
+    <% if (bonus_id != -1) { %>
+      <code>Number for Bonus #<%= bonus_id %>: <%= bonus_amount %></code>
+    <% } else { %>
+      <code>A clue to the final bonus can be found inside the cache!</code>
+    <% } %>
   </div>
 </body>
 </html>

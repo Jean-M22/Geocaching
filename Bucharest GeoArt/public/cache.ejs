@@ -17,9 +17,9 @@
       font-family: 'Roboto', sans-serif;
     }
     div {
-      font-size: 1.5em;
+      font-size: 1.4em;
       padding: 20px;
-      font-weight: bold;
+      font-weight: 550;
       text-transform: uppercase;
       padding-bottom: 10px;
     }
@@ -46,6 +46,9 @@
     .small {
       font-size: inherit;
     }
+    #question {
+      text-transform: none;
+    }
   </style>
   
   <script defer>
@@ -61,7 +64,7 @@
   <div class="center">
     <div class="small">București - <%= letter %>#<%= number %></div>
     <div class="small"><%= topic %></div>
-    <div><%= question %></div>
+    <div id="question"><%- question %></div>
     <form action="/BucharestGeoArt/cache/<%= letter %>/<%= number %>/check" method="POST">
       <input type="text" name="answer" placeholder="English or Romanian OK">
       <button type="submit">CHECK ANSWER</button>
