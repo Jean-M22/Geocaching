@@ -6,7 +6,7 @@ export type Answer = {type: "contain_text" | "contain_word", value: string | str
                      {type: "and" | "or", value: Answer[]} |
                      {type: "bonus", value: number};
 
-app.get("/BucharestGeoArt/cache/:letter/:number", (req, res) => {
+app.get("/BucurestiGeoArt/cache/:letter/:number", (req, res) => {
     if (!questions.hasOwnProperty(req.params.letter)) return res.status(400).send("Invalid cache letter");
     const letter = req.params.letter as keyof typeof questions;
     
@@ -21,11 +21,11 @@ app.get("/BucharestGeoArt/cache/:letter/:number", (req, res) => {
     });
 });
 
-app.get("/BucharestGeoArt/cache/:letter/:number/check", (req, res) => {
-    res.redirect(302, `/BucharestGeoArt/cache/${req.params.letter}/${req.params.number}`);
+app.get("/BucurestiGeoArt/cache/:letter/:number/check", (req, res) => {
+    res.redirect(302, `/BucurestiGeoArt/cache/${req.params.letter}/${req.params.number}`);
 })
 
-app.post("/BucharestGeoArt/cache/:letter/:number/check", (req, res) => {
+app.post("/BucurestiGeoArt/cache/:letter/:number/check", (req, res) => {
     if (!questions.hasOwnProperty(req.params.letter)) return res.status(400).send("Invalid cache letter");
     const letter = req.params.letter as keyof typeof questions;
     
@@ -33,7 +33,7 @@ app.post("/BucharestGeoArt/cache/:letter/:number/check", (req, res) => {
     const number = req.params.number as keyof typeof questions[typeof letter]["caches"];
 
     if (!checkAnswer(req.body.answer, questions[letter].caches[number].answer as Answer)) 
-        return res.redirect(302, `/BucharestGeoArt/cache/${req.params.letter}/${req.params.number}?incorrect`);
+        return res.redirect(302, `/BucurestiGeoArt/cache/${req.params.letter}/${req.params.number}?incorrect`);
 
     
     return res.render(join(__dirname, "/public/correct.ejs"), {
