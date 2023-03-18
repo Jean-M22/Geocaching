@@ -7,8 +7,8 @@ export type Answer = {type: "contain_text" | "contain_word", value: string | str
                      {type: "bonus", value: number};
 
 app.get("/BucurestiGeoArt/cache/:letter/:number", (req, res) => {
-    if (!questions.hasOwnProperty(req.params.letter)) return res.status(400).send("Invalid cache letter");
-    const letter = req.params.letter as keyof typeof questions;
+    if (!questions.hasOwnProperty(req.params.letter.toUpperCase())) return res.status(400).send("Invalid cache letter");
+    const letter = req.params.letter.toUpperCase() as keyof typeof questions;
     
     if (!questions[letter].caches.hasOwnProperty(req.params.number)) return res.status(400).send("Invalid cache number");
     const number = req.params.number as keyof typeof questions[typeof letter]["caches"];
@@ -19,6 +19,7 @@ app.get("/BucurestiGeoArt/cache/:letter/:number", (req, res) => {
         displayLetter: letter.replace("1", "¹").replace("2", "²"),
         topic: questions[letter].topic,
         question: questions[letter].caches[number].question,
+        color: getColor(questions[letter].color, parseInt(number)),
     });
 });
 
@@ -27,8 +28,8 @@ app.get("/BucurestiGeoArt/cache/:letter/:number/check", (req, res) => {
 })
 
 app.post("/BucurestiGeoArt/cache/:letter/:number/check", (req, res) => {
-    if (!questions.hasOwnProperty(req.params.letter)) return res.status(400).send("Invalid cache letter");
-    const letter = req.params.letter as keyof typeof questions;
+    if (!questions.hasOwnProperty(req.params.letter.toUpperCase())) return res.status(400).send("Invalid cache letter");
+    const letter = req.params.letter.toUpperCase() as keyof typeof questions;
     
     if (!questions[letter].caches.hasOwnProperty(req.params.number)) return res.status(400).send("Invalid cache number");
     const number = req.params.number as keyof typeof questions[typeof letter]["caches"];
@@ -44,7 +45,8 @@ app.post("/BucurestiGeoArt/cache/:letter/:number/check", (req, res) => {
         topic: questions[letter].topic,
         coords: questions[letter].caches[number].coords,
         bonus_id: questions[letter].bonusId,
-        bonus_amount: questions[letter].caches[number].bonusAmount
+        bonus_amount: questions[letter].caches[number].bonusAmount,
+        color: getColor(questions[letter].color, parseInt(number)),
     });
 });
 
@@ -63,8 +65,13 @@ function checkAnswer(given: string, expected: Answer): boolean {
     }
 }
 
-function cleanAnswer(str: string): string {
-    return str.toLowerCase().replace(/[ăâ]/g, "a").replace(/î/g, "i").replace(/ș/g, "s").replace(/ț/g, "t");
+function getColor(color: string, number: number): string {
+    if (color != "bonus_inherit") return color;
+    return Object.values(questions).find(q => q.bonusId == number)!.color;
+}
+
+function cleanAnswer(answer: string): string {
+    return answer.toLowerCase().replace(/[ăâ]/g, "a").replace(/î/g, "i").replace(/ș/g, "s").replace(/ț/g, "t");
 }
 
 function calculateBonusAmount(id: number): number {
@@ -80,5 +87,6 @@ function calculateBonusAmount(id: number): number {
             total += cache.bonusAmount;
         }
     }
+    console.log(total);
     return total;
 }

@@ -5,12 +5,14 @@
   <title>GeoArt București</title>
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <style>
+    * {
+      color: <%= color %>;
+    }
     .center {
       display: flex;
       flex-direction: column;
       justify-content: center;
       align-items: center;
-      height: 90vh;
     }
     @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300&display=swap');
     body {
@@ -34,6 +36,7 @@
       font-size: 0.9em;
       padding: 10px;
       margin: 10px;
+      font-weight: bold;
     }
     @media only screen and (max-width: 480px) {
       .center {
