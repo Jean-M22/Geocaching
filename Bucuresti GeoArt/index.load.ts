@@ -7,10 +7,10 @@ export type Answer = {type: "contain_text" | "contain_word", value: string | str
                      {type: "bonus", value: number};
 
 app.get("/BucurestiGeoArt/cache/:letter/:number", (req, res) => {
-    if (!questions.hasOwnProperty(req.params.letter.toUpperCase())) return res.status(400).send("Invalid cache letter");
+    if (!questions.hasOwnProperty(req.params.letter.toUpperCase())) return res.status(400).send("This cache page is temporarily unavailable. It will be updated soon.");
     const letter = req.params.letter.toUpperCase() as keyof typeof questions;
     
-    if (!questions[letter].caches.hasOwnProperty(req.params.number)) return res.status(400).send("Invalid cache number");
+    if (!questions[letter].caches.hasOwnProperty(req.params.number)) return res.status(400).send("This cache page is temporarily unavailable. It will be updated soon.");
     const number = req.params.number as keyof typeof questions[typeof letter]["caches"];
     
     return res.render(join(__dirname, "/public/cache.ejs"), {
@@ -28,10 +28,10 @@ app.get("/BucurestiGeoArt/cache/:letter/:number/check", (req, res) => {
 })
 
 app.post("/BucurestiGeoArt/cache/:letter/:number/check", (req, res) => {
-    if (!questions.hasOwnProperty(req.params.letter.toUpperCase())) return res.status(400).send("Invalid cache letter");
+    if (!questions.hasOwnProperty(req.params.letter.toUpperCase())) return res.status(400).send("This cache page is temporarily unavailable. It will be updated soon.");
     const letter = req.params.letter.toUpperCase() as keyof typeof questions;
     
-    if (!questions[letter].caches.hasOwnProperty(req.params.number)) return res.status(400).send("Invalid cache number");
+    if (!questions[letter].caches.hasOwnProperty(req.params.number)) return res.status(400).send("This cache page is temporarily unavailable. It will be updated soon.");
     const number = req.params.number as keyof typeof questions[typeof letter]["caches"];
 
     console.log(`Checking answer for cache ${letter}#${number}: ${req.body.answer}`);
