@@ -16,7 +16,7 @@ app.get("/BucurestiGeoArt/cache/:letter/:number", (req, res) => {
     return res.render(join(__dirname, "/public/cache.ejs"), {
         letter: letter,
         number: number,
-        displayLetter: letter.replace("1", "¹").replace("2", "²"),
+        displayLetter: letter == "S" ? "Ș" : letter.replace("1", "¹").replace("2", "²"),
         topic: questions[letter].topic,
         question: questions[letter].caches[number].question,
         color: getColor(questions[letter].color, parseInt(number)),
@@ -41,7 +41,7 @@ app.post("/BucurestiGeoArt/cache/:letter/:number/check", (req, res) => {
 
     return res.render(join(__dirname, "/public/correct.ejs"), {
         number: number,
-        displayLetter: letter.replace("1", "¹").replace("2", "²"),
+        displayLetter: letter == "S" ? "Ș" : letter.replace("1", "¹").replace("2", "²"),
         topic: questions[letter].topic,
         coords: questions[letter].caches[number].coords,
         bonus_id: questions[letter].bonusId,
