@@ -5,5 +5,5 @@ app.get("/_redirect/lpsgark", (_, res) => {
 });
 
 app.get("/_redirect/geoart/:letter/:number", (req, res) => {
-    return res.redirect(302, `/BucurestiGeoArt/cache/${req.params.letter}/${req.params.number}`);
+    return res.redirect(302, `/BucurestiGeoArt/cache/${req.params.letter.toUpperCase().replace("Ș", "S")}/${req.params.number}`);
 });
