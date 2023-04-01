@@ -57,7 +57,7 @@
     <div class="small"><%= topic %></div>
     <div style="color: lime">CORRECT!</div>
     <div><%= coords %></div>
-    <% if (bonus_id != -1) { %>
+    <% if (number == "FINAL") { } else if (bonus_id != -1) { %>
       <code>Number for Bonus #<%= bonus_id %>: <%= bonus_amount %></code>
     <% } else { %>
       <code>A clue to the final bonus can be found inside the cache!</code>

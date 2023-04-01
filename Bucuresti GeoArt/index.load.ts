@@ -66,8 +66,12 @@ function checkAnswer(given: string, expected: Answer): boolean {
 }
 
 function getColor(color: string, number: number): string {
-    if (color != "bonus_inherit") return color;
-    return Object.values(questions).find(q => q.bonusId == number)!.color;
+    try {
+        if (color != "bonus_inherit") return color;
+        return Object.values(questions).find(q => q.bonusId == number)!.color;
+    } catch {
+        return "black";
+    }
 }
 
 function cleanAnswer(answer: string): string {
