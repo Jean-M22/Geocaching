@@ -43,6 +43,7 @@ app.post("/BucurestiGeoArt/cache/:letter/:number/check", (req, res) => {
         number: number,
         displayLetter: letter == "S" ? "Ș" : letter.replace("1", "¹").replace("2", "²"),
         topic: questions[letter].topic,
+        question: questions[letter].caches[number].question,
         coords: questions[letter].caches[number].coords,
         bonus_id: questions[letter].bonusId,
         bonus_amount: questions[letter].caches[number].bonusAmount,
@@ -52,6 +53,8 @@ app.post("/BucurestiGeoArt/cache/:letter/:number/check", (req, res) => {
 
 function checkAnswer(given: string, expected: Answer): boolean {
     switch (expected.type) {
+        case undefined:
+            return true;
         case "and":
             return expected.value.every(v => checkAnswer(given, v));
         case "or":

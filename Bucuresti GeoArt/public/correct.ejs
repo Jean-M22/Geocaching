@@ -55,7 +55,9 @@
   <div class="center">
     <div class="small">București - <%= displayLetter %>#<%= number %></div>
     <div class="small"><%= topic %></div>
-    <div style="color: lime">CORRECT!</div>
+    <% if (question) { %>
+      <div style="color: lime">CORRECT!</div>
+    <% } %>
     <div><%= coords %></div>
     <% if (number == "FINAL") { } else if (bonus_id != -1) { %>
       <code>Number for Bonus #<%= bonus_id %>: <%= bonus_amount %></code>
