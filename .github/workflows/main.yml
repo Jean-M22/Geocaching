@@ -13,6 +13,6 @@ jobs:
           username: ${{ secrets.SSH_USER }}
           key: ${{ secrets.SSH_TOKEN }}
           script: |
-            cd ~/geocaching
+            cd ${{ vars.REPO_PATH }}
             git pull
             npm i
