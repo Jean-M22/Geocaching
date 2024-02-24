@@ -53,7 +53,7 @@
       text-transform: none;
     }
   </style>
-  
+
   <script defer>
     document.addEventListener("DOMContentLoaded", () => {
       if (window.location.search.includes("incorrect")) {
@@ -70,7 +70,7 @@
     <div id="question"><%- question ? question : "Această întrebare este momentan în lucru. Puteți accesa răspunsul direct.<br>This question is still work in progress. You can access the answer directly." %></div>
     <form action="/BucurestiGeoArt/cache/<%= letter %>/<%= number %>/check" method="POST">
       <% if(question) { %>
-        <input type="text" name="answer" placeholder="English or Romanian OK">
+        <input type="text" name="answer" placeholder="<%= answerType === "ro/en" ? "English or Romanian OK" : answerType === "ro" ? "Answer in Romanian" : answerType === "num" ? "Enter number / Introdu numărul" : "" %>">
         <button type="submit">CHECK ANSWER</button>
       <% } else { %>
         <button type="submit">SHOW ANSWER</button>
